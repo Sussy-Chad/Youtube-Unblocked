@@ -175,7 +175,7 @@
          }
          #search-results {
             height: 525px;
-            width: 800px;
+            width: 780px;
             overflow-x: hidden;
             overflow-y: auto;
             border: 5px dashed #63da9d;
@@ -446,7 +446,7 @@
             var searchParams = new URLSearchParams(window.location.search);
             searchParams.set("video", id);
             var newRelativePathQuery = window.location.pathname + "?" + searchParams.toString();
-            history.pushState(null, "", newRelativePathQuery);            
+            history.pushState(null, "", newRelativePathQuery);
             Toast.fire({
                icon: "success",
                title: "Copied Share URL To Clipboard",
