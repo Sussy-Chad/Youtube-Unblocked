@@ -438,15 +438,15 @@
          function sharevideo() {
             var str = $("#youtube-iframe").attr("src");
             var id = str.split("https://www.youtube-nocookie.com/embed/").pop().split("?rel=0&amp;modestbranding=1&amp;hd=1&amp;showinfo=0&amp;controls=1&amp;iv_load_policy=3&amp;wmode=transparent&amp;autohide=1&amp;autoplay=0")[0];
-            var searchParams = new URLSearchParams(window.location.search);
-            searchParams.set("video", id);
-            var newRelativePathQuery = window.location.pathname + "?" + searchParams.toString();
-            history.pushState(null, "", newRelativePathQuery);
             if (window.location.href.indexOf("?") > -1) {
                copyTextToClipboard(document.location + "&video=" + id);
             } else {
                copyTextToClipboard(document.location + "?video=" + id);
             }
+            var searchParams = new URLSearchParams(window.location.search);
+            searchParams.set("video", id);
+            var newRelativePathQuery = window.location.pathname + "?" + searchParams.toString();
+            history.pushState(null, "", newRelativePathQuery);            
             Toast.fire({
                icon: "success",
                title: "Copied Share URL To Clipboard",
