@@ -3,12 +3,18 @@
    <head>
       <link rel="preconnect" href="https://cdn.jsdelivr.net"/>
       <link rel="dns-prefetch" href="https://cdn.jsdelivr.net"/>
+      <link rel="preconnect" href="https://cdn.jsdelivr.net"/>
+      <link rel="dns-prefetch" href="https://cdn.jsdelivr.net"/>
       <meta charset="UTF-8" />
       <meta http-equiv="X-UA-Compatible" content="IE=edge" />
       <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       <title>Youtube Unblocked</title>
       <meta name="title" content="Youtube Unblocked - Watch Videos Unblocked In School"/>
       <meta name="description" content="Watch Youtube Videos, Vimeo Videos, And Dailymotion Videos In School Unblocked. Share Videos & View Comments Unblocked In School!"/>
+      <link rel="apple-touch-icon" sizes="180x180" href="favicon/apple-touch-icon.png">
+      <link rel="icon" type="image/png" sizes="32x32" href="favicon/favicon-32x32.png">
+      <link rel="icon" type="image/png" sizes="16x16" href="favicon/favicon-16x16.png">
+      <link rel="manifest" href="favicon/site.webmanifest">
       <style>
          @font-face {
             font-family: "Open Sans";
@@ -186,9 +192,9 @@
             border-radius: 10px;
             margin-top: 10px;
          }
-         #commentsx {
+         #sidebar {
             height: 510px;
-            width: 300px;
+            width: 310px;
             overflow-x: hidden;
             overflow-y: auto;
             border: 5px dashed #63da9d;
@@ -323,7 +329,9 @@
       <div class="header__top__border"></div>
       <div id="classroom-youtube">
          <div id="content">
-            <h1 class="m-10 h1" onclick="keyboard('s')" id="h1-key">Youtube Unblocked</h1>
+            <div>
+               <img src="favicon/favicon-32x32.png" style="float: left;margin-top:5px"/><h1 class="m-10 h1" onclick="keyboard('s')" id="h1-key" style="float: right">Youtube Unblocked</h1>
+            </div>
             <div id="api-available">
                <form class="controls form-main" action="javascript:void(0)" onsubmit="search()">
                   <input class="youtube-search" required autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" placeholder="Search For A Video On Youtube Or Paste A Youtube Video URL" id="youtube-url" />
@@ -332,7 +340,6 @@
                <center id="loader" style="display: none;"><img style="margin-top: 0px;" src="https://res.cloudinary.com/mjkui/image/upload/v1643248327/ezgif-6-d26e9f87c2-stp3gu-unscreen_zoxkdr.gif" /></center>
                <div id="search-results" style="display: none;">
                   <div id="search-results-json"></div>
-                  <h3 style="padding: 8px 12px;">Looks like that's all the results! Try being more specific!</h3>
                </div>
             </div>
             <div id="flex-box">
@@ -347,7 +354,7 @@
                      </p>
                   </center>
                </div>
-               <div id="commentsx" class="yt-controls" style="margin-left:15px;display: none">
+               <div id="sidebar" class="yt-controls" style="margin-left:15px;display: none">
                   <h2 class="h2-c">Details</h2>
                   <div id="detail-section" class="text3">
                      <ul>
@@ -583,6 +590,7 @@
                         $("#search-results").show();
                      }
                   }
+                  $("#h1-key").css('cursor', '');
                }
             }
          });
@@ -620,7 +628,7 @@
          }
          function sharevideo() {
             var str = $("#youtube-iframe").attr("src");
-            var id = str.split("https://www.youtube-nocookie.com/embed/").pop().split("?rel=0&amp;modestbranding=1&amp;hd=1&amp;showinfo=0&amp;controls=1&amp;iv_load_policy=3&amp;wmode=transparent&amp;autohide=1&amp;autoplay=0")[0];
+            var id = str.split("https://tube.rvere.com/embed/?v=")[1];
             var searchParams = new URLSearchParams(window.location.search);
             searchParams.set("video", id);
             var newRelativePathQuery = window.location.pathname + "?" + searchParams.toString();
@@ -645,7 +653,7 @@
             $(".yt-controls").hide();
          }
          function youtubeurl(id) {
-            iframe_url = "https://www.youtube-nocookie.com/embed/" + id + "?rel=0&amp;modestbranding=1&amp;hd=1&amp;showinfo=0&amp;controls=1&amp;iv_load_policy=3&amp;wmode=transparent&amp;autohide=1&amp;autoplay=0";
+            iframe_url = "https://tube.rvere.com/embed/?v=" + id;
             if (iframe_url) {
                $("#search-results").hide();
                $(".yt-controls").show();
@@ -660,6 +668,7 @@
             $("#vid-date").html("");
             $("#vid-blocked").html("");
             video_json(id);
+            $("#h1-key").css('cursor', 'pointer');
          }
          function keyboard(key) {
             document.dispatchEvent(new KeyboardEvent("keydown", { key: key }));
