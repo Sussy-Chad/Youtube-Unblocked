@@ -159,8 +159,8 @@
          #youtube-iframe {
             padding-top: 5px;
             padding-left: 5px;
-            width: 98.9%;
-            height: 97.9%;
+            width: 920px;
+            height: 518px;
          }
          #video-player {
             border-radius: 10px;
@@ -359,7 +359,6 @@
                   <div id="video-player" style="display: none;">
                      <center style="margin-top: 150px;" id="loader-youtube"><img style="margin-top: 0px;" src="https://res.cloudinary.com/mjkui/image/upload/v1643248327/ezgif-6-d26e9f87c2-stp3gu-unscreen_zoxkdr.gif" /></center>
                      <video src="" id="youtube-iframe" controls autoplay loop>
-                        <track src="" kind="subtitles" srclang="en" label="English" default />
                      </video>
                   </div>
                   <center>
@@ -589,6 +588,7 @@
             } else {
                if (event.key === "s") {
                   query = $("#youtube-url").val();
+                  $("#en-trans").remove();
                   $("#youtube-iframe").attr("src", "");
                   $(".controls").show();
                   $("#video-player").hide();
@@ -665,6 +665,15 @@
          } else {
             $(".yt-controls").hide();
          }
+         function makeidk(length) {
+            var result           = '';
+            var characters       = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+            var charactersLength = characters.length;
+            for ( var i = 0; i < length; i++ ) {
+               result += characters.charAt(Math.floor(Math.random() * charactersLength));
+            }
+            return result;
+         }
          function youtubeurl(id) {
             youtubeshareid = id;
             $("#video-player").css("background-color", "#a3c2b2");
@@ -685,7 +694,14 @@
                var str = JSON.stringify(dd).replace('[{"src":"', "").replace('"}]', "");
                iframe_url = str;
                $("#youtube-iframe").attr("src", iframe_url);
-               $("track").attr("src", "https://youtube-class-api.herokuapp.com/youtube/captions/?id=" + id);
+               track = document.createElement("track");
+               track.kind = "captions";
+               track.label = "English (ID=" + makeidk(5) + ")";
+               track.srclang = "en";
+               track.src = "https://youtube-class-api.herokuapp.com/youtube/captions/?id=" + youtubeshareid;
+               track.setAttribute('default', '');
+               track.setAttribute('id', 'en-trans');
+               document.getElementById("youtube-iframe").appendChild(track);
                $("#youtube-iframe").on("loadeddata", function () {
                   $("#video-player").css("background-color", "");
                   $("#loader-youtube").hide();
@@ -700,7 +716,12 @@
          function keyboard(key) {
             document.dispatchEvent(new KeyboardEvent("keydown", { key: key }));
          }
-         new Plyr("#youtube-iframe");
+         new Plyr("#youtube-iframe", {
+            captions: {
+               active: true,
+               update:true
+            }
+         });
       </script>
       <script async defer src="https://cdn.jsdelivr.net/gh/aFarkas/lazysizes/lazysizes.min.js"></script>
       <script async defer src="https://cdn.jsdelivr.net/gh/Dheirya/Youtube-Unblocked/tippy.js"></script>
