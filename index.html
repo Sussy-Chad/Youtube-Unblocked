@@ -1,10 +1,8 @@
-<!DOCTYPE html>
+<!DOCTYPE html>{% load cache %}
 <html oncontextmenu="return false">
    <head>
       <link rel="preconnect" href="https://cdn.jsdelivr.net" />
       <link rel="dns-prefetch" href="https://cdn.jsdelivr.net" />
-      <link rel="preconnect" href="https://youtube-class-api.herokuapp.com" />
-      <link rel="dns-prefetch" href="https://youtube-class-api.herokuapp.com" />
       <link rel="preconnect" href="https://i.ytimg.com" />
       <link rel="dns-prefetch" href="https://i.ytimg.com" />
       <link rel="preload" as="style" href="https://cdn.plyr.io/3.6.12/plyr.css" />
@@ -14,10 +12,10 @@
       <title>Youtube Unblocked</title>
       <meta name="title" content="Youtube Unblocked - Watch Videos Unblocked In School" />
       <meta name="description" content="Watch Youtube Videos, Vimeo Videos, And Dailymotion Videos In School Unblocked. Share Videos & View Comments Unblocked In School!" />
-      <link rel="apple-touch-icon" sizes="180x180" href="favicon/apple-touch-icon.png" />
-      <link rel="icon" type="image/png" sizes="32x32" href="favicon/favicon-32x32.png" />
-      <link rel="icon" type="image/png" sizes="16x16" href="favicon/favicon-16x16.png" />
-      <link rel="manifest" href="favicon/site.webmanifest" />
+      <link rel="apple-touch-icon" sizes="180x180" href="https://cdn.jsdelivr.net/gh/Dheirya/Youtube-Unblocked/favicon/apple-touch-icon.png" />
+      <link rel="icon" type="image/png" sizes="32x32" href="https://cdn.jsdelivr.net/gh/Dheirya/Youtube-Unblocked/favicon/favicon-32x32.png" />
+      <link rel="icon" type="image/png" sizes="16x16" href="https://cdn.jsdelivr.net/gh/Dheirya/Youtube-Unblocked/favicon/favicon-16x16.png" />
+      <link rel="manifest" href="https://cdn.jsdelivr.net/gh/Dheirya/Youtube-Unblocked/favicon/site.webmanifest" />
       <style>
          @font-face {
             font-family: "Open Sans";
@@ -333,6 +331,24 @@
             background: url("https://res.cloudinary.com/mjkui/image/upload/v1643507360/youtube-new-logo-11549681567deobxciy2e-removebg-preview_z7m6uw.png") 98% -150% no-repeat, linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.5)) !important;
             background-size: 70px auto, auto !important;
          }
+         @keyframes dots-1 { from { opacity: 0; } 25% { opacity: 1; } }
+         @keyframes dots-2 { from { opacity: 0; } 50% { opacity: 1; } }
+         @keyframes dots-3 { from { opacity: 0; } 75% { opacity: 1; } }
+         @-webkit-keyframes dots-1 { from { opacity: 0; } 25% { opacity: 1; } }
+         @-webkit-keyframes dots-2 { from { opacity: 0; } 50% { opacity: 1; } }
+         @-webkit-keyframes dots-3 { from { opacity: 0; } 75% { opacity: 1; } }
+         .dots span {
+             animation: dots-1 1s infinite steps(1);
+             -webkit-animation: dots-1 1s infinite steps(1);
+         }
+         .dots span:first-child + span {
+             animation-name: dots-2;
+             -webkit-animation-name: dots-2;
+         }
+         .dots span:first-child + span + span {
+             animation-name: dots-3;
+             -webkit-animation-name: dots-3;
+         }
       </style>
       <link rel="stylesheet" href="https://cdn.plyr.io/3.6.12/plyr.css" />
    </head>
@@ -341,7 +357,7 @@
       <div id="classroom-youtube">
          <div id="content">
             <div>
-               <img src="favicon/favicon-32x32.png" style="float: left; margin-top: 5px;" />
+               <img src="https://cdn.jsdelivr.net/gh/Dheirya/Youtube-Unblocked/favicon/favicon-32x32.png" style="float: left; margin-top: 5px;" />
                <h1 class="m-10 h1" onclick="keyboard('s')" id="h1-key" style="float: right;">Youtube Unblocked</h1>
             </div>
             <div id="api-available">
@@ -357,9 +373,11 @@
             <div id="flex-box">
                <div style="flex: 1;">
                   <div id="video-player" style="display: none;">
-                     <center style="margin-top: 150px;" id="loader-youtube"><img style="margin-top: 0px;" src="https://res.cloudinary.com/mjkui/image/upload/v1643248327/ezgif-6-d26e9f87c2-stp3gu-unscreen_zoxkdr.gif" /></center>
-                     <video src="" id="youtube-iframe" controls autoplay loop>
-                     </video>
+                     <center style="margin-top: 150px;" id="loader-youtube">
+                        <img style="margin-top: 0px;" src="https://res.cloudinary.com/mjkui/image/upload/v1643248327/ezgif-6-d26e9f87c2-stp3gu-unscreen_zoxkdr.gif"/>
+                        <h2><span id="messageload">Loading</span><span class="dots"><span>.</span><span>.</span><span>.</span></span></h2>
+                     </center>
+                     <video src="" id="youtube-iframe" controls autoplay loop></video>
                   </div>
                   <center>
                      <p class="m-10 yt-controls" style="display: none;">
@@ -429,7 +447,7 @@
                } else {
                   if (query) {
                      $("#loader").show();
-                     URL = "https://youtube-class-api.herokuapp.com/youtube/";
+                     URL = "https://unblocktube.herokuapp.com/youtube/";
                      options = {
                         q: query,
                      };
@@ -442,7 +460,7 @@
                } else {
                   if (query) {
                      $("#loader").show();
-                     URL = "https://youtube-class-api.herokuapp.com/youtube/";
+                     URL = "https://unblocktube.herokuapp.com/youtube/";
                      options = {
                         q: query,
                      };
@@ -452,7 +470,7 @@
             } else {
                if (query) {
                   $("#loader").show();
-                  URL = "https://youtube-class-api.herokuapp.com/youtube/";
+                  URL = "https://unblocktube.herokuapp.com/youtube/";
                   options = {
                      q: query,
                   };
@@ -491,7 +509,7 @@
             }
          }
          function video_json(yt_id) {
-            d_URL = "https://youtube-class-api.herokuapp.com/youtube/details/?id=" + yt_id;
+            d_URL = "https://unblocktube.herokuapp.com/youtube/details/?id=" + yt_id;
             $.getJSON(d_URL, function (data) {
                $("#vid-title").html(data.title);
                $("#vid-views").html(data.viewCount.text.replace(/\B(?=(\d{3})+(?!\d))/g, ","));
@@ -499,7 +517,7 @@
                $("#vid-cat").html(data.category);
                $("#vid-date").html(formatdate(data.publishDate));
             });
-            c_URL = "https://youtube-class-api.herokuapp.com/youtube/comments/?id=" + yt_id;
+            c_URL = "https://unblocktube.herokuapp.com/youtube/comments/?id=" + yt_id;
             $.getJSON(c_URL, function (data) {
                comments(data);
             });
@@ -538,7 +556,7 @@
                      var dur = item.duration;
                      var author = item.channel.name;
                      var views = item.viewCount.short;
-                     d_URL = "https://youtube-class-api.herokuapp.com/youtube/details/?id=" + vid;
+                     d_URL = "https://unblocktube.herokuapp.com/youtube/details/?id=" + vid;
                      $.getJSON(d_URL, function (data) {
                         if (data.category == "Gaming" || data.category == "People & Blogs") {
                            $("#search-results-json").append(`
@@ -676,6 +694,7 @@
          }
          function youtubeurl(id) {
             youtubeshareid = id;
+            $("#messageload").html('Getting MP4 File');
             $("#video-player").css("background-color", "#a3c2b2");
             $("#youtube-iframe").hide();
             $("#loader-youtube").show();
@@ -690,15 +709,16 @@
             $("#vid-cat").html("");
             $("#vid-date").html("");
             $("#h1-key").css("cursor", "pointer");
-            $.getJSON("https://youtube-class-api.herokuapp.com/youtube/src/?id=" + id, function (dd) {
+            $.getJSON("https://unblocktube.herokuapp.com/youtube/src/?id=" + id, function (dd) {
                var str = JSON.stringify(dd).replace('[{"src":"', "").replace('"}]', "");
                iframe_url = str;
                $("#youtube-iframe").attr("src", iframe_url);
+               $("#messageload").html('Loading Video File & Captions');
                track = document.createElement("track");
                track.kind = "captions";
                track.label = "English (ID=" + makeidk(5) + ")";
                track.srclang = "en";
-               track.src = "https://youtube-class-api.herokuapp.com/youtube/captions/?id=" + youtubeshareid;
+               track.src = "https://unblocktube.herokuapp.com/youtube/captions/?id=" + youtubeshareid;
                track.setAttribute('default', '');
                track.setAttribute('id', 'en-trans');
                document.getElementById("youtube-iframe").appendChild(track);
@@ -709,8 +729,11 @@
                });
                video_json(id);
             }).fail(function () {
-               console.log("Failed - Retrying Video Loading...");
-               youtubeurl(youtubeshareid);
+               var searchParams = new URLSearchParams(window.location.search);
+               searchParams.set("video", youtubeshareid);
+               var newRelativePathQuery = window.location.pathname + "?" + searchParams.toString();
+               history.pushState(null, "", newRelativePathQuery);
+               $("#messageload").html('Getting Video File Failed - Try Reloading This Site');
             });
          }
          function keyboard(key) {
